@@ -21,11 +21,7 @@ class OAuthController {
         redirect_uri: config.redirectUri,
         client_id: config.clientId,
         client_secret: config.clientSecret,
-      }).toString(), {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
+      }));
 
       const accessToken = response.data.access_token;
       res.status(200).json({ access_token: accessToken });

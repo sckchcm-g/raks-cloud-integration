@@ -21,11 +21,7 @@ class DropboxController {
         client_id: Config.dropboxAppKey,
         client_secret: Config.dropboxAppSecret,
         redirect_uri: Config.dropboxRedirectUri,
-      }).toString(), {
-        headers: {
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-      });
+      }));
 
       const accessToken = response.data.access_token;
       // Store the access token securely (e.g., in a session, database, etc.)
