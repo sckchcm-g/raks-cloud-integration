@@ -9,11 +9,11 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Routes
-const oauthRoutes = require('./routes/oauthRoutes');
+const calendlyRoutes = require('./routes/calendlyRoutes');
 const dropboxRoutes = require('./routes/dropboxRoutes');
 const figmaRoutes = require('./routes/figmaRoutes');
 
-app.use('/oauth', oauthRoutes);
+app.use('/calendly', calendlyRoutes);
 app.use('/dropbox', dropboxRoutes);
 app.use('/figma', figmaRoutes);
 

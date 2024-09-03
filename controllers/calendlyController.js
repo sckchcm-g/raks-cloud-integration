@@ -1,7 +1,7 @@
 const axios = require('axios');
-const config = require('../config/config');
+const config = require('../config/calendlyConfig');
 
-class OAuthController {
+class calendlyController {
   static authorize(req, res) {
     const authUrl = `${config.calendlyAuthUrl}?client_id=${config.clientId}&response_type=code&redirect_uri=${config.redirectUri}`;
     res.redirect(authUrl);
@@ -32,4 +32,4 @@ class OAuthController {
   }
 }
 
-module.exports = OAuthController;
+module.exports = calendlyController;

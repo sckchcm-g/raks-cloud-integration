@@ -16,9 +16,6 @@ class FigmaController {
     if (!code) {
       return res.status(400).json({ error: 'Authorization code is missing' });
     }
-
-    // Verify the state parameter here if you stored it during the authorization request
-
     try {
       const response = await axios.post(FigmaConfig.figmaTokenUrl, new URLSearchParams({
         client_id: FigmaConfig.figmaClientId,
