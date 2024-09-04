@@ -1,11 +1,14 @@
 const axios = require('axios');
+const logger = require('../utils/logger');
 
 class OauthBaseController {
   constructor(config) {
     this.config = config;
+    logger.info(`${this.constructor.name} initialized with config: ${JSON.stringify(config)}`);
   }
 
   authorize(req, res) {
+    logger.info(`${this.constructor.name}: Authorize method called`);
     let authUrl = `${this.config.authUrl}?client_id=${this.config.clientId}&response_type=code&redirect_uri=${this.config.redirectUri}`;
     if (this.config.scope) {
       authUrl += `&scope=${this.config.scope}`;
@@ -17,9 +20,11 @@ class OauthBaseController {
   }
 
   async callback(req, res) {
+    logger.info(`${this.constructor.name}: Callback method called`);
     const { code } = req.query;
 
     if (!code) {
+      logger.error(`${this.constructor.name}: Authorization code is missing`);
       return res.status(400).json({ error: 'Authorization code is missing' });
     }
 
@@ -33,9 +38,10 @@ class OauthBaseController {
       }));
 
       const accessToken = response.data.access_token;
+      logger.info(`${this.constructor.name}: Access token received`);
       res.status(200).json({ access_token: accessToken });
     } catch (error) {
-      console.error('Error exchanging code for token:', error.response?.data || error.message);
+      logger.error(`${this.constructor.name}: Error exchanging code for token: ${error.response?.data || error.message}`);
       res.status(500).json({ error: 'Failed to exchange authorization code for access token' });
     }
   }
