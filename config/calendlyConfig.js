@@ -1,11 +1,7 @@
-const dotenv = require('dotenv');
-dotenv.config();
-
 module.exports = {
+  authUrl: 'https://auth.calendly.com/oauth/authorize',
+  tokenUrl: 'https://auth.calendly.com/oauth/token',
   clientId: process.env.CALENDLY_CLIENT_ID,
   clientSecret: process.env.CALENDLY_CLIENT_SECRET,
   redirectUri: process.env.CALENDLY_REDIRECT_URI,
-  calendlyApiUrl: 'https://api.calendly.com',
-  calendlyAuthUrl: 'https://auth.calendly.com/oauth/authorize',
-  calendlyTokenUrl: 'https://auth.calendly.com/oauth/token',
 };

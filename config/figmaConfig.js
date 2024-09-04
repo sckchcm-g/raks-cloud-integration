@@ -1,26 +1,11 @@
-const dotenv = require('dotenv');
-dotenv.config();
+const crypto = require('crypto');
 
-class FigmaConfig {
-  static get figmaClientId() {
-    return process.env.FIGMA_CLIENT_ID;
-  }
-
-  static get figmaClientSecret() {
-    return process.env.FIGMA_CLIENT_SECRET;
-  }
-
-  static get figmaRedirectUri() {
-    return process.env.FIGMA_REDIRECT_URI;
-  }
-
-  static get figmaAuthUrl() {
-    return 'https://www.figma.com/oauth';
-  }
-
-  static get figmaTokenUrl() {
-    return 'https://www.figma.com/api/oauth/token';
-  }
-}
-
-module.exports = FigmaConfig;
+module.exports = {
+  authUrl: 'https://www.figma.com/oauth',
+  tokenUrl: 'https://www.figma.com/api/oauth/token',
+  clientId: process.env.FIGMA_CLIENT_ID,
+  clientSecret: process.env.FIGMA_CLIENT_SECRET,
+  redirectUri: process.env.FIGMA_REDIRECT_URI,
+  scope: 'files:read,file_comments:write',
+  state: crypto.randomBytes(16).toString('hex'),
+};
