@@ -1,10 +1,12 @@
-const OauthBaseController = require('../controllers/OauthBaseController');
+const BaseService = require('./baseService');
 const config = require('../config/figmaConfig');
 
-class Figma extends OauthBaseController {
+class Figma extends BaseService {
   constructor() {
     super(config);
   }
+
+  // Define service-specific methods if needed
 }
 
-module.exports = new Figma();
+module.exports = Figma;

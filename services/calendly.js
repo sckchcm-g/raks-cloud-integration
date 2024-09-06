@@ -1,10 +1,10 @@
-const OauthBaseController = require('../controllers/OauthBaseController');
+const BaseService = require('./baseService');
 const config = require('../config/calendlyConfig');
 
-class Calendly extends OauthBaseController {
+class Calendly extends BaseService {
   constructor() {
     super(config);
   }
 }
 
-module.exports = new Calendly();
+module.exports = Calendly;

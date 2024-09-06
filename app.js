@@ -9,8 +9,10 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 
 // Routes
-const userRoutes = require('./routes/OauthRoutes');
-app.use('/', userRoutes);
+const oAuthRoutes = require('./routes/OauthRoutes');
+const moreRoutes = require('./routes/MoreRoutes');
+app.use('/', oAuthRoutes);
+app.use('/', moreRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

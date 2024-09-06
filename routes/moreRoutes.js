@@ -10,14 +10,16 @@ fs.readdirSync(servicesPath).forEach(file => {
   const serviceName = path.basename(file, '.js');
   const ServiceClass = require(path.join(servicesPath, file));
 
-  router.get(`/${serviceName}/authorize`, (req, res) => {
+  // Single route to handle all tasks using makeRequest
+  router.post(`/${serviceName}/request`, async (req, res) => {
     const service = new ServiceClass();
-    service.authorize(req, res);
-  });
-
-  router.get(`/${serviceName}/callback`, (req, res) => {
-    const service = new ServiceClass();
-    service.callback(req, res);
+    const { method, urlPath, data, headers } = req.body;
+    try {
+      const response = await service.makeRequest(method, urlPath, data, headers);
+      res.json(response.data);
+    } catch (err) {
+      res.status(500).json(err.response ? err.response.data : { error: err.message });
+    }
   });
 });
 

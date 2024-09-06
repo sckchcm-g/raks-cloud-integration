@@ -4,4 +4,5 @@ module.exports = {
   clientId: process.env.DROPBOX_CLIENT_ID,
   clientSecret: process.env.DROPBOX_CLIENT_SECRET,
   redirectUri: process.env.DROPBOX_REDIRECT_URI,
+  scope: 'file_requests.write sharing.write sharing.read',
 };
