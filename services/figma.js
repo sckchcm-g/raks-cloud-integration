@@ -6,7 +6,12 @@ class Figma extends BaseService {
     super(config);
   }
 
-  // Define service-specific methods if needed
+  // Method to get the current user's information
+  async getUserInfo(headers) {
+    const urlPath = 'v1/me';
+    const method = 'GET';
+    return await this.makeRequest(method, urlPath, null, headers);
+  }
 }
 
 module.exports = Figma;
